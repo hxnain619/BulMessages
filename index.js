@@ -22,7 +22,7 @@ const SendMessageToGroup = (event) => {
             numArr.push(number);
         }
     }
-    
+
     event.preventDefault();
     if (message1.value !== "" && contact1.value !== "" && numArr.length !== 0) {
         fetch("https://platform.clickatell.com/messages", {
@@ -36,7 +36,7 @@ const SendMessageToGroup = (event) => {
         })
             .then(res => {
                 if (res) {
-                    
+
                     alert("message send succesfully!!");
                     message1.value = null;
                     contact1.value = null;
@@ -73,21 +73,26 @@ const SendMessageToGroup2 = (event) => {
         for (var b = 0; b < numArr2.length; b++) {
             fetch(`https://platform.clickatell.com/messages/http/send?apiKey=1-2ahfpVSYu22KOCkFmm3Q==&to=${numArr2[b]}&content=${message2.value}`)
                 .then(res => {
-                    if (res) {
-                        condition = true;
-                        message2.value = null;
-                        contact2.value = null;
-                    }
+                    condition = true;
+                    message2.value = null;
+                    contact2.value = null;
                 })
                 .catch(err => {
                     alert("network error")
                 })
-        }
-        if (condition) {
-            alert("message send sucessfully!!")
+
+            if (condition) {
+                alert("message send sucessfully!!")
+                condition = false;
+            } else if (!condition && numArr2.length == 1) {
+                alert("message send sucessfully!!")
+                condition = false
+            }
+
         }
     } else {
         alert("field is empty!!")
     }
+
 }
 
