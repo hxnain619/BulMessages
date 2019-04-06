@@ -36,7 +36,6 @@ const SendMessageToGroup = (event) => {
         })
             .then(res => {
                 if (res) {
-                    console.log(numArr);
                     
                     alert("message send succesfully!!");
                     message1.value = null;
