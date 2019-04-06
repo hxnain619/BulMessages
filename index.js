@@ -12,7 +12,7 @@ const SendMessageToGroup = (event) => {
     var index = 0;
     var numArr = [];
     for (var a = 0; a < num.length; a++) {
-        if (num[a] === ",") {
+        if (num[a] === "\n") {
             var number = num.slice(index, a);
             numArr.push(number);
             index = a + 1;
@@ -22,7 +22,7 @@ const SendMessageToGroup = (event) => {
             numArr.push(number);
         }
     }
-
+    
     event.preventDefault();
     if (message1.value !== "" && contact1.value !== "" && numArr.length !== 0) {
         fetch("https://platform.clickatell.com/messages", {
@@ -57,7 +57,7 @@ const SendMessageToGroup2 = (event) => {
     var numArr2 = [];
 
     for (var a = 0; a < num2.length; a++) {
-        if (num2[a] === ",") {
+        if (num2[a] === "\n") {
             var number = num2.slice(index, a);
             numArr2.push(number);
             index = a + 1;
