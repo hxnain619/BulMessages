@@ -1,16 +1,19 @@
 var message1 = document.querySelector(".message1");
 var message2 = document.querySelector(".message2");
-
 var contact1 = document.querySelector(".contact1");
 var contact2 = document.querySelector(".contact2");
+var condition, condition2 = false;
+var numArr = [];
 
-const from = "923072460234";
-var condition = false;
+const from = "17076790568";
 
-const SendMessageToGroup = (event) => {
+const SendMessageToGroup = async (event) => {
+    event.preventDefault();
+
     var num = contact1.value;
     var index = 0;
-    var numArr = [];
+    numArr = [];
+
     for (var a = 0; a < num.length; a++) {
         if (num[a] === "\n") {
             var number = num.slice(index, a);
@@ -23,22 +26,24 @@ const SendMessageToGroup = (event) => {
         }
     }
 
-    event.preventDefault();
+
     if (message1.value !== "" && contact1.value !== "" && numArr.length !== 0) {
-        const send1 = async () => {
+        for (var i = 0; i < numArr.length; i++) {
+
             await fetch("https://platform.clickatell.com/messages", {
-                headers: { "Content-Type": "application/json", "Authorization": "ekjFPgVNSCCTU7pTqPew7g==" },
+                headers: { "Content-Type": "application/json", "Authorization": "qE03wVr7R1GPNrNEN8PEBg==" },
 
                 method: "POST",
                 body: JSON.stringify({
                     "content": `${message1.value}`,
-                    "to": numArr, "from": `${from}`
+                    "to": [numArr[i]],
+                    "from": `${from}`
                 })
             })
                 .then(res => {
                     if (res) {
 
-                        alert("message send succesfully!!");
+                        condition2 = true;
                         message1.value = null;
                         contact1.value = null;
                     }
@@ -47,13 +52,17 @@ const SendMessageToGroup = (event) => {
                     alert("network error")
                 })
         }
-        send1();
-    } else {
-        alert("field is empty!!")
+        if (condition2) {
+            alert("send successfully");
+            condition2 = false;
+        } else if (!condition2 && numArr.length == 1) {
+            alert("send successfully");
+            condition2 = false;
+        }
     }
 }
 
-const SendMessageToGroup2 = (event) => {
+const SendMessageToGroup2 = async (event) => {
     event.preventDefault();
 
     var num2 = contact2.value;
@@ -75,41 +84,26 @@ const SendMessageToGroup2 = (event) => {
     if (message2.value !== "" && contact2.value !== "" && numArr2.length > 0) {
 
         for (var b = 0; b < numArr2.length; b++) {
-            if (b !== 0 && b % 5 === 0) {
-                setTimeout(async () => {
-                    await fetch(`https://platform.clickatell.com/messages/http/send?apiKey=CImNQbsAQACViPIJ2kHxoA==&to=${numArr2[b]}&content=${message2.value}`)
-                        .then(res => {
+            await fetch(`https://platform.clickatell.com/messages/http/send?apiKey=p29twVaKRfWDpRzyzxaA_Q==&to=${numArr2[b]}&content=${message2.value}`)
+                .then(res => {
 
-                            condition = true;
-                            message2.value = null;
-                            contact2.value = null;
-                        })
-                        .catch(err => {
-                            alert("network error")
-                        })
-                }, 2000)
-            } else {
-                fetch(`https://platform.clickatell.com/messages/http/send?apiKey=CImNQbsAQACViPIJ2kHxoA==&to=${numArr2[b]}&content=${message2.value}`)
-                    .then(res => {
-
-                        condition = true;
-                        message2.value = null;
-                        contact2.value = null;
-                    })
-                    .catch(err => {
-                        alert("network error")
-                    })
-            }
+                    message2.value = null;
+                    contact2.value = null;
+                    condition = true;
+                })
+                .catch(err => {
+                    alert("network error")
+                })
         }
 
-        if (condition) {
+
+        if (condition == true) {
             alert("message send sucessfully!!")
             condition = false;
         } else if (!condition && numArr2.length == 1) {
             alert("message send sucessfully!!")
             condition = false
         }
-
 
     } else {
         alert("field is empty!!")
