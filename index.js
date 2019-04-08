@@ -73,11 +73,14 @@ const SendMessageToGroup2 = (event) => {
     if (message2.value !== "" && contact2.value !== "" && numArr2.length > 0) {
 
         for (var b = 0; b < numArr2.length; b++) {
-            if (b % 5 === 0) {
-                setTimeout(() => {
-                    fetch(`https://platform.clickatell.com/messages/http/send?apiKey=CImNQbsAQACViPIJ2kHxoA==&to=${numArr2[b]}&content=${message2.value}`)
+            if (b !== 0 && b % 5 === 0) {
+                console.log(b);
+                
+                setTimeout(async () => {
+                    await fetch(`https://platform.clickatell.com/messages/http/send?apiKey=CImNQbsAQACViPIJ2kHxoA==&to=${numArr2[b]}&content=${message2.value}`)
                         .then(res => {
-
+                            console.log("wait");
+                            
                             condition = true;
                             message2.value = null;
                             contact2.value = null;
