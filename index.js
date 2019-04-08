@@ -4,7 +4,7 @@ var message2 = document.querySelector(".message2");
 var contact1 = document.querySelector(".contact1");
 var contact2 = document.querySelector(".contact2");
 
-const from = "1717-204-4530";
+const from = "923072460234";
 var condition = false;
 
 const SendMessageToGroup = (event) => {
@@ -52,6 +52,8 @@ const SendMessageToGroup = (event) => {
 }
 
 const SendMessageToGroup2 = (event) => {
+    event.preventDefault();
+
     var num2 = contact2.value;
     var index = 0;
     var numArr2 = [];
@@ -68,31 +70,52 @@ const SendMessageToGroup2 = (event) => {
         }
     }
 
-    event.preventDefault();
     if (message2.value !== "" && contact2.value !== "" && numArr2.length > 0) {
+
         for (var b = 0; b < numArr2.length; b++) {
-            fetch(`https://platform.clickatell.com/messages/http/send?apiKey=1-2ahfpVSYu22KOCkFmm3Q==&to=${numArr2[b]}&content=${message2.value}`)
-                .then(res => {
-                    condition = true;
-                    message2.value = null;
-                    contact2.value = null;
-                })
-                .catch(err => {
-                    alert("network error")
-                })
+            if (b % 5 === 0) {
+                setTimeout(() => {
+                    fetch(`https://platform.clickatell.com/messages/http/send?apiKey=CImNQbsAQACViPIJ2kHxoA==&to=${numArr2[b]}&content=${message2.value}`)
+                        .then(res => {
+                            console.log("waited");
 
-            if (condition) {
-                alert("message send sucessfully!!")
-                condition = false;
-            } else if (!condition && numArr2.length == 1) {
-                alert("message send sucessfully!!")
-                condition = false
+                            condition = true;
+                            message2.value = null;
+                            contact2.value = null;
+                        })
+                        .catch(err => {
+                            alert("network error")
+                        })
+                }, 1000)
+            } else {
+                 fetch(`https://platform.clickatell.com/messages/http/send?apiKey=CImNQbsAQACViPIJ2kHxoA==&to=${numArr2[b]}&content=${message2.value}`)
+                    .then(res => {
+                        console.log("send");
+
+                        condition = true;
+                        message2.value = null;
+                        contact2.value = null;
+                    })
+                    .catch(err => {
+                        alert("network error")
+                    })
             }
-
         }
+
+        if (condition) {
+            alert("message send sucessfully!!")
+            condition = false;
+        } else if (!condition && numArr2.length == 1) {
+            alert("message send sucessfully!!")
+            condition = false
+        }
+
+
     } else {
         alert("field is empty!!")
     }
 
+
 }
+
 
