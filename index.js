@@ -25,27 +25,29 @@ const SendMessageToGroup = (event) => {
 
     event.preventDefault();
     if (message1.value !== "" && contact1.value !== "" && numArr.length !== 0) {
-        fetch("https://platform.clickatell.com/messages", {
-            headers: { "Content-Type": "application/json", "Authorization": "ekjFPgVNSCCTU7pTqPew7g==" },
+        const send1 = async () => {
+            await fetch("https://platform.clickatell.com/messages", {
+                headers: { "Content-Type": "application/json", "Authorization": "ekjFPgVNSCCTU7pTqPew7g==" },
 
-            method: "POST",
-            body: JSON.stringify({
-                "content": `${message1.value}`,
-                "to": numArr, "from": `${from}`
+                method: "POST",
+                body: JSON.stringify({
+                    "content": `${message1.value}`,
+                    "to": numArr, "from": `${from}`
+                })
             })
-        })
-            .then(res => {
-                if (res) {
+                .then(res => {
+                    if (res) {
 
-                    alert("message send succesfully!!");
-                    message1.value = null;
-                    contact1.value = null;
-                }
-            })
-            .catch(err => {
-                alert("network error")
-            })
-
+                        alert("message send succesfully!!");
+                        message1.value = null;
+                        contact1.value = null;
+                    }
+                })
+                .catch(err => {
+                    alert("network error")
+                })
+        }
+        send1();
     } else {
         alert("field is empty!!")
     }
@@ -74,13 +76,10 @@ const SendMessageToGroup2 = (event) => {
 
         for (var b = 0; b < numArr2.length; b++) {
             if (b !== 0 && b % 5 === 0) {
-                console.log(b);
-                
                 setTimeout(async () => {
                     await fetch(`https://platform.clickatell.com/messages/http/send?apiKey=CImNQbsAQACViPIJ2kHxoA==&to=${numArr2[b]}&content=${message2.value}`)
                         .then(res => {
-                            console.log("wait");
-                            
+
                             condition = true;
                             message2.value = null;
                             contact2.value = null;
@@ -88,9 +87,9 @@ const SendMessageToGroup2 = (event) => {
                         .catch(err => {
                             alert("network error")
                         })
-                }, 1000)
+                }, 2000)
             } else {
-                 fetch(`https://platform.clickatell.com/messages/http/send?apiKey=CImNQbsAQACViPIJ2kHxoA==&to=${numArr2[b]}&content=${message2.value}`)
+                fetch(`https://platform.clickatell.com/messages/http/send?apiKey=CImNQbsAQACViPIJ2kHxoA==&to=${numArr2[b]}&content=${message2.value}`)
                     .then(res => {
 
                         condition = true;
@@ -118,5 +117,4 @@ const SendMessageToGroup2 = (event) => {
 
 
 }
-
 
