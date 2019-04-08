@@ -21,10 +21,12 @@
             <h2>One Way Single/Group Message</h2>
             <textarea class="contact2" placeholder="Enter Numbers" cols="50" rows="10"></textarea> <br />
             <textarea class="message2" placeholder="Enter Your Message" cols="50" rows="10"></textarea>
-            <button  onclick="SendMessageToGroup2(event)">Send Message</button>
+            <button onclick="SendMessageToGroup2(event)">Send Message</button>
         </div>
     </div>
     <div id="popUp">
+        <h3> Messages Status</h3>
+        <div id="list"></div>
     </div>
     <style>
         .container {
@@ -33,6 +35,15 @@
         }
 
         #popUp {
+
+            position: relative;
+            top: -650px;
+            padding: 10px;
+            text-align: center;
+            border: 1px solid black;
+            border-radius: 10px;
+            height: 500px;
+            overflow: scroll;
             width: 30%;
             float: right;
         }
