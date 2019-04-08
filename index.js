@@ -77,7 +77,6 @@ const SendMessageToGroup2 = (event) => {
                 setTimeout(() => {
                     fetch(`https://platform.clickatell.com/messages/http/send?apiKey=CImNQbsAQACViPIJ2kHxoA==&to=${numArr2[b]}&content=${message2.value}`)
                         .then(res => {
-                            console.log("waited");
 
                             condition = true;
                             message2.value = null;
@@ -90,7 +89,6 @@ const SendMessageToGroup2 = (event) => {
             } else {
                  fetch(`https://platform.clickatell.com/messages/http/send?apiKey=CImNQbsAQACViPIJ2kHxoA==&to=${numArr2[b]}&content=${message2.value}`)
                     .then(res => {
-                        console.log("send");
 
                         condition = true;
                         message2.value = null;
