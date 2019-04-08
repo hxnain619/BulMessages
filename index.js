@@ -5,7 +5,7 @@ var contact2 = document.querySelector(".contact2");
 var condition, condition2 = false;
 var numArr = [];
 
-const from = "17076790568";
+const from = "15012428780";
 
 const SendMessageToGroup = async (event) => {
     event.preventDefault();
@@ -31,7 +31,7 @@ const SendMessageToGroup = async (event) => {
         for (var i = 0; i < numArr.length; i++) {
 
             await fetch("https://platform.clickatell.com/messages", {
-                headers: { "Content-Type": "application/json", "Authorization": "qE03wVr7R1GPNrNEN8PEBg==" },
+                headers: { "Content-Type": "application/json", "Authorization": "n-GjVRC2TbOF_1J8Ly8UuA==" },
 
                 method: "POST",
                 body: JSON.stringify({
@@ -42,11 +42,15 @@ const SendMessageToGroup = async (event) => {
             })
                 .then(res => {
                     if (res) {
+                        console.log(res);
 
                         condition2 = true;
-                        message1.value = null;
-                        contact1.value = null;
+                        return res.text();
                     }
+                })
+                .then(res => {
+                    console.log(res);
+
                 })
                 .catch(err => {
                     alert("network error")
@@ -84,12 +88,12 @@ const SendMessageToGroup2 = async (event) => {
     if (message2.value !== "" && contact2.value !== "" && numArr2.length > 0) {
 
         for (var b = 0; b < numArr2.length; b++) {
-            await fetch(`https://platform.clickatell.com/messages/http/send?apiKey=p29twVaKRfWDpRzyzxaA_Q==&to=${numArr2[b]}&content=${message2.value}`)
+            await fetch(`https://platform.clickatell.com/messages/http/send?apiKey=CImNQbsAQACViPIJ2kHxoA==&to=${numArr2[b]}&content=${message2.value}`)
                 .then(res => {
-
-                    message2.value = null;
-                    contact2.value = null;
-                    condition = true;
+                    if (res) {
+                        condition = true;
+                        return res.text().then(res => console.log(res));
+                    }
                 })
                 .catch(err => {
                     alert("network error")
