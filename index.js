@@ -2,11 +2,16 @@ var message1 = document.querySelector(".message1");
 var message2 = document.querySelector(".message2");
 var contact1 = document.querySelector(".contact1");
 var contact2 = document.querySelector(".contact2");
+var div = document.querySelector("#popUp");
 var condition, condition2 = false;
 var numArr = [];
 
-const from = "15012428780";
 
+
+const from = "15012428780";
+const triger = () => {
+
+}
 const SendMessageToGroup = async (event) => {
     event.preventDefault();
 
@@ -29,9 +34,9 @@ const SendMessageToGroup = async (event) => {
 
     if (message1.value !== "" && contact1.value !== "" && numArr.length !== 0) {
         for (var i = 0; i < numArr.length; i++) {
-
             await fetch("https://platform.clickatell.com/messages", {
-                headers: { "Content-Type": "application/json", "Authorization": "n-GjVRC2TbOF_1J8Ly8UuA==" },
+                headers: { "Content-Type": "application/json",
+                "Authorization": "n-GjVRC2TbOF_1J8Ly8UuA==" },
 
                 method: "POST",
                 body: JSON.stringify({
@@ -42,27 +47,17 @@ const SendMessageToGroup = async (event) => {
             })
                 .then(res => {
                     if (res) {
-                        console.log(res);
 
+                        div.innerHTML += `<h3>Message Send to ${numArr[i]}</h3><br />`
                         condition2 = true;
-                        return res.text();
                     }
-                })
-                .then(res => {
-                    console.log(res);
-
                 })
                 .catch(err => {
                     alert("network error")
                 })
         }
-        if (condition2) {
-            alert("send successfully");
-            condition2 = false;
-        } else if (!condition2 && numArr.length == 1) {
-            alert("send successfully");
-            condition2 = false;
-        }
+        setTimeout(() => div.innerHTML = "",2000);
+      
     }
 }
 
@@ -91,24 +86,19 @@ const SendMessageToGroup2 = async (event) => {
             await fetch(`https://platform.clickatell.com/messages/http/send?apiKey=CImNQbsAQACViPIJ2kHxoA==&to=${numArr2[b]}&content=${message2.value}`)
                 .then(res => {
                     if (res) {
+
+                        div.innerHTML += `<h3>Message Send to ${numArr2[b]}</h3><br />`
                         condition = true;
-                        return res.text().then(res => console.log(res));
                     }
                 })
                 .catch(err => {
                     alert("network error")
                 })
+
         }
 
-
-        if (condition == true) {
-            alert("message send sucessfully!!")
-            condition = false;
-        } else if (!condition && numArr2.length == 1) {
-            alert("message send sucessfully!!")
-            condition = false
-        }
-
+        setTimeout(() => div.innerHTML = "",2000);
+        
     } else {
         alert("field is empty!!")
     }

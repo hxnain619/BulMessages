@@ -5,22 +5,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
     <title>Document</title>
 </head>
 
 <body>
-    <div>
-        <h2>Two Way Single/ Group Message</h2>
-        <textarea class="contact1" placeholder="Enter Numbers" cols="50" rows="10"></textarea> <br />
-        <textarea class="message1" placeholder="Enter Your Message" cols="50" rows="10"></textarea>
-        <button onclick="SendMessageToGroup(event)">Send Message</button>
+    <div class="container">
+        <div>
+            <h2>Two Way Single/ Group Message</h2>
+            <textarea class="contact1" placeholder="Enter Numbers" cols="50" rows="10"></textarea> <br />
+            <textarea class="message1" placeholder="Enter Your Message" cols="50" rows="10"></textarea>
+            <button onclick="SendMessageToGroup(event)">Send Message</button>
+        </div>
+        <div>
+            <h2>One Way Single/Group Message</h2>
+            <textarea class="contact2" placeholder="Enter Numbers" cols="50" rows="10"></textarea> <br />
+            <textarea class="message2" placeholder="Enter Your Message" cols="50" rows="10"></textarea>
+            <button  onclick="SendMessageToGroup2(event)">Send Message</button>
+        </div>
     </div>
-    <div>
-        <h2>One Way Single/Group Message</h2>
-        <textarea class="contact2" placeholder="Enter Numbers" cols="50" rows="10"></textarea> <br />
-        <textarea class="message2" placeholder="Enter Your Message" cols="50" rows="10"></textarea>
-        <button onclick="SendMessageToGroup2(event)">Send Message</button>
+    <div id="popUp">
     </div>
+    <style>
+        .container {
+            width: 70%;
+            float: left;
+        }
+
+        #popUp {
+            width: 30%;
+            float: right;
+        }
+    </style>
     <script src="index.js"></script>
 </body>
 
