@@ -1,17 +1,13 @@
-var message1 = document.querySelector(".message1");
-var message2 = document.querySelector(".message2");
-var contact1 = document.querySelector(".contact1");
-var contact2 = document.querySelector(".contact2");
-var div = document.querySelector("#list");
-var condition, condition2 = false;
-var numArr = [];
-
-
+var message1 = document.querySelector(".message1"),
+ message2 = document.querySelector(".message2"),
+ contact1 = document.querySelector(".contact1"),
+ contact2 = document.querySelector(".contact2"),
+ div = document.querySelector("#list"),
+ condition, condition2 = false,
+ numArr = [];
 
 const from = "15012428780";
-const triger = () => {
 
-}
 const SendMessageToGroup = async (event) => {
     event.preventDefault();
 
