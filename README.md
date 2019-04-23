@@ -1,2 +1,2 @@
 # BulkMessages
-bulk messages with clickatell 
+bulk messages 
