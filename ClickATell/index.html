@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Clickatell Messagnig Web</h1>
+        <div>
+            <h2>Two Way Single/ Group Message</h2>
+            <textarea class="contact1" placeholder="Enter Numbers" cols="50" rows="10"></textarea> <br />
+            <textarea class="message1" placeholder="Enter Your Message" cols="50" rows="10"></textarea>
+            <button onclick="SendMessageToGroup(event)">Send Message</button>
+        </div>
+        <div>
+            <h2>One Way Single/Group Message</h2>
+            <textarea class="contact2" placeholder="Enter Numbers" cols="50" rows="10"></textarea> <br />
+            <textarea class="message2" placeholder="Enter Your Message" cols="50" rows="10"></textarea>
+            <button onclick="SendMessageToGroup2(event)">Send Message</button>
+        </div>
+    </div>
+    <div id="popUp">
+        <h3> Messages Status</h3>
+        <div id="list"></div>
+    </div>
+    <style>
+        .container {
+            width: 70%;
+            float: left;
+        }
+
+        #popUp {
+
+            position: relative;
+            top: -650px;
+            padding: 10px;
+            text-align: center;
+            border: 1px solid black;
+            border-radius: 10px;
+            height: 500px;
+            overflow: scroll;
+            width: 30%;
+            float: right;
+        }
+    </style>
+    <script src="index.js"></script>
+</body>
+
+</html>
