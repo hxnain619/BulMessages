@@ -38,7 +38,7 @@ const SendMessageToGroup = (event) => {
             formData.append('Password', "@Online101")
             formData.append('PhoneNumbers', `${data}`)
             formData.append('Message', `${message.value}`)
-            await fetch("https://app.eztexting.com/sending/messages?format=json", {
+            await fetch("https://cors-anywhere.herokuapp.com/"+"https://app.eztexting.com/sending/messages?format=json", {
                 method: "POST",
                 headers: {
                     "Authorization": "Basic bG9nYW5AYmFiYm9pdGFsaWFuLmNvbTpAT25saW5lMTAx"
