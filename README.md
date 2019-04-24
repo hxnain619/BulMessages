@@ -16,3 +16,7 @@ https://hxnain619.github.io/BulkMessages/Karix/index.html
 
 # For Telnyx Live Preview : 
 https://hxnain619.github.io/BulkMessages/Telnyx/index.html
+
+# For EZ Texting Live Preview :
+https://hxnain619.github.io/BulkMessages/EZ Texting/index.html
+
